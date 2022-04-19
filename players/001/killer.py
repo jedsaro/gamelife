@@ -1,7 +1,7 @@
 import random
 
 def init():
-    return("💀")
+    return("🌮")
 
 
 def run(db_cursor , state):
@@ -17,19 +17,17 @@ def run(db_cursor , state):
 
 def logic(row):
   
-  
-  return(f"insert into engine_orders values( {row[0]}, {row[1]}, {row[0] - 1 }, {row[1] + 1 }, 'MOVE')")
-    
-    
+  return(f"insert into engine_orders values( {row[0]}, {row[1]}, {left(row)}, {row[1] + 1 }, 'MOVE')")
+
     
 def left(row):
-  return("row[0]-1")
+  return(row[0]-1)
 def right(row):
-  return("row[0]+1")
+  return(row[0]+1)
 def up(row):
-  return("row[0]-1")
+  return(row[1]-1)
 def down(row):
-  return("row[0]+1")
+  return(row[1]+1)
 # +1 down
 # -1 up
 # +1 right
