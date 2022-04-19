@@ -46,14 +46,14 @@ for g in glob(configs['env']['player_dir'], recursive=True):
         chosen_char = test_me.init()
         init_pos = (randint(0, GAME_WIDTH), randint(0, GAME_HEIGHT))
         p = {"module": test_me, "dot_char": chosen_char,
-             "flag_x_y": init_pos, "init_pos": init_pos,
-             "module_name": mod_name,
-             "state": {
-                 "MAX_X": GAME_WIDTH,
-                 "MAX_Y": GAME_HEIGHT,
-                 "NAME": mod_name
-             }
-             }
+            "flag_x_y": init_pos, "init_pos": init_pos,
+            "module_name": mod_name,
+            "state": {
+                "MAX_X": GAME_WIDTH,
+                "MAX_Y": GAME_HEIGHT,
+                "NAME": mod_name
+            }
+            }
 
         good_players.append(p)
         cur.execute(configs['sql']['del_initl_pos'].replace(
