@@ -35,7 +35,7 @@ for sql in configs['sql']['setup']:
 
 for i in range(int((GAME_WIDTH * GAME_HEIGHT) * configs['env']['food_amount'])):
     cur.execute(configs['sql']['place_food'].replace('!!X', str(
-        randint(0, GAME_WIDTH))).replace('!!Y', str(randint(0, GAME_HEIGHT))))
+      randint(0, GAME_WIDTH))).replace('!!Y', str(randint(0, GAME_HEIGHT))))
 
 good_players = []
 for g in glob(configs['env']['player_dir'], recursive=True):
