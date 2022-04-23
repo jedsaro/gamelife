@@ -14,12 +14,6 @@ def run(db_cursor , state):
     db_cursor.execute(logic(row)) 
 
 def logic(row): 
-  
-  global my_dots
-  
-  if (row[0],row[1]) not in my_dots:
-  
-  
   return(f"insert into engine_orders values( {row[0]}, {row[1]}, {left(row)}, {down(row)}, 'MOVE')")
 
 def left(row):
