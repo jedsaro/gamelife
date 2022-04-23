@@ -7,13 +7,24 @@ def init():
 
 def run(db_cursor , state): 
   
+  food_location = []
+  
+  food = db_cursor.execute(f"SELECT x,y from main_game_field as taco, owner where is_flag = FALSE and taco.owner_id = owner.owner_id and owner.name = 'Food'")
+  
+  for i in food.fetchall():
+    food_location.append(i)
+
   rows = db_cursor.execute(f"SELECT x,y from main_game_field as gf, owner where is_flag = FALSE and gf.owner_id = owner.owner_id and owner.name = '{state['NAME']}'")
   
   for row in rows.fetchall():
-    print(row)
-    db_cursor.execute(logic(row)) 
+    db_cursor.execute(logic(row, food_location)) 
 
-def logic(row): 
+#find the nearest food
+def logic(row, food_location): 
+
+
+  
+  
   return(f"insert into engine_orders values( {row[0]}, {row[1]}, {left(row)}, {down(row)}, 'MOVE')")
 
 def left(row):
