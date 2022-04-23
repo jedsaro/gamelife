@@ -36,9 +36,9 @@ def differenceY(a, b):
   return (a[1] - b[1])
 
 #find the nearest food
-def logic(row, food_location):  
+def logic(row, food_location):
   
-  
+  food_location.sort()
   
   return(f"insert into engine_orders values( {row[0]}, {row[1]}, {left(row)}, {down(row)}, 'MOVE')")
 
