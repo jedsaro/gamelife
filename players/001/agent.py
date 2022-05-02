@@ -50,7 +50,7 @@ def run(db_cursor, state):
 
 def logic(row, food_location):
 
-    if(row[0], row[1] != food_location[0][]):
+    if(row not in food_location):
         # find the nearest food
         nearest_food = food_location[0]
 
