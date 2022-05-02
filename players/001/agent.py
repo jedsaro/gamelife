@@ -2,44 +2,57 @@ import random
 
 my_dots = {}
 
+
 def init():
-  return("🌮")
+    return("🌮")
+
 
 def left(row):
-  return(row[0]-1)
+    return(row[0]-1)
+
+
 def right(row):
-  return(row[0]+1)
+    return(row[0]+1)
+
+
 def up(row):
-  return(row[1]-1)
+    return(row[1]-1)
+
+
 def down(row):
-  return(row[1]+1)
+    return(row[1]+1)
 
-def run(db_cursor , state): 
-  
-  food_location = []
-  
-  food = db_cursor.execute(f"SELECT x,y from main_game_field as taco, owner where is_flag = FALSE and taco.owner_id = owner.owner_id and owner.name = 'Food'")
-  
-  for i in food.fetchall():
-    food_location.append(i)
 
-  rows = db_cursor.execute(f"SELECT x,y from main_game_field as gf, owner where is_flag = FALSE and gf.owner_id = owner.owner_id and owner.name = '{state['NAME']}'")
-  
-  for row in rows.fetchall():
-    db_cursor.execute(logic(row, food_location))
-    print(row) 
+def run(db_cursor, state):
 
-def differenceX(a, b):
-  return (a[0] - b[0])
+    food_location = []
 
-def differenceY(a, b):
-  return (a[1] - b[1])
+    food = db_cursor.execute(
+        f"SELECT x,y from main_game_field as taco, owner where is_flag = FALSE and taco.owner_id = owner.owner_id and owner.name = 'Food'")
 
-#find the nearest food
+    for i in food.fetchall():
+        food_location.append(i)
+
+    food_location.sort()
+    
+    rows = db_cursor.execute(
+        f"SELECT x,y from main_game_field as gf, owner where is_flag = FALSE and gf.owner_id = owner.owner_id and owner.name = '{state['NAME']}'")
+
+    for row in rows.fetchall():
+        db_cursor.execute(logic(row, food_location))
+
+# find the nearest food
+
+
 def logic(row, food_location):
-  
-  food_location.sort()
-  
-  return(f"insert into engine_orders values( {row[0]}, {row[1]}, {left(row)}, {down(row)}, 'MOVE')")
 
-#taco
+    print("PENE")
+    #find food
+    if row not in food_location: 
+      
+
+        
+
+    return(f"insert into engine_orders values( {row[0]}, {row[1]}, {left(row)}, {down(row)}, 'MOVE')")
+
+# taco
