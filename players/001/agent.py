@@ -19,6 +19,7 @@ def run(db_cursor, state):
   
     food_location = []
 
+
     food = db_cursor.execute(
         f"SELECT x,y from main_game_field as taco, owner where is_flag = FALSE and taco.owner_id = owner.owner_id and owner.name = 'Food'")
 
