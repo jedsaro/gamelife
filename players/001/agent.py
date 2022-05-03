@@ -16,8 +16,6 @@ def up(row):
 def down(row):
     return(row[1]+1)
   
-
-
 def run(db_cursor, state):
   
     food_location = []
