@@ -1,7 +1,6 @@
 def init():
     return("🌮")
 
-
 def left(row):
     return(row[0]-1)
 
