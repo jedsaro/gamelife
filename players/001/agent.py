@@ -1,8 +1,3 @@
-import random
-
-my_dots = {}
-
-
 def init():
     return("🌮")
 
@@ -26,7 +21,6 @@ def down(row):
 def run(db_cursor, state):
   
     food_location = []
-    proximity = []
 
     food = db_cursor.execute(
         f"SELECT x,y from main_game_field as taco, owner where is_flag = FALSE and taco.owner_id = owner.owner_id and owner.name = 'Food'")
@@ -41,7 +35,6 @@ def run(db_cursor, state):
 
     for row in rows.fetchall():
         db_cursor.execute(logic(row, food_location))
-
 
 
 def logic(row, food_location):
