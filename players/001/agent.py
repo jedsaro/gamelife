@@ -12,7 +12,6 @@ def right(row):
 def up(row):
     return(row[1]-1)
 
-
 def down(row):
     return(row[1]+1)
   
