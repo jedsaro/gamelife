@@ -26,6 +26,7 @@ def down(row):
 def run(db_cursor, state):
   
     food_location = []
+    proximity = []
 
     food = db_cursor.execute(
         f"SELECT x,y from main_game_field as taco, owner where is_flag = FALSE and taco.owner_id = owner.owner_id and owner.name = 'Food'")
@@ -49,7 +50,7 @@ def logic(row, food_location):
       
         # find the nearest food
         nearest_food = food_location[0]
-    
+        print(nearest_food)
 
         for i in food_location:
             if(abs(i[0] - row[0]) + abs(i[1] - row[1]) < abs(nearest_food[0] - row[0]) + abs(nearest_food[1] - row[1])):
