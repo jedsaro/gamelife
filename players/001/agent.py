@@ -1,4 +1,4 @@
-from functools import cmp_to_key
+import math # for the euclidean distance
 
 def init():
     return("🌮")
@@ -19,10 +19,12 @@ def up(row):
 def down(row):
     return(row[1]+1)
 
-#? Euclidean Distance Formula
 
-def euclidean_distance(a, b):
-  return (((a[0] - b[0]) ** 2 + (a[1] - b[1]) ** 2) ** 0.5)
+#euclidean distance
+def euclidean_distance(row, food_location):
+  return math.sqrt((row[0] - food_location[0])**2 + (row[1] - food_location[1])**2)
+
+
 
 def run(db_cursor, state):
 
@@ -34,14 +36,6 @@ def run(db_cursor, state):
     for i in food.fetchall():
         food_location.append(i)
 
-    print(f"this is the food: {food_location}")
-    
-    sorted(food_location, key=cmp_to_key(euclidean_distance))
-    
-    print("-----------------------------------------------------")
-    
-    print(f"tu tio: {food_location}")
-
     rows = db_cursor.execute(
         f"SELECT x,y from main_game_field as gf, owner where is_flag = FALSE and gf.owner_id = owner.owner_id and owner.name = '{state['NAME']}'")
 
@@ -50,8 +44,6 @@ def run(db_cursor, state):
 
 
 def logic(row, food_location):
-  
-  print(f"this is tu mama {row}")
   
   for looking in food_location:
       # if the food is not in the same row
@@ -70,6 +62,8 @@ def logic(row, food_location):
           # if the food is below
           else:
               return(f"insert into engine_orders values( {row[0]}, {row[1]}, {row[0]}, {down(row)}, 'MOVE')")
+  
+
 
   return(f"insert into engine_orders values( {row[0]}, {row[1]}, {left(row)}, {down(row)}, 'MOVE')")
 
