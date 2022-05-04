@@ -1,3 +1,4 @@
+from functools import cmp_to_key
 import math # for the euclidean distance
 
 def init():
@@ -45,6 +46,8 @@ def run(db_cursor, state):
 
 def logic(row, food_location):
   
+  food_location.sort(key=lambda x: euclidean_distance(row, x))
+  
   for looking in food_location:
       # if the food is not in the same row
       if(looking[0] != row[0]):
@@ -62,7 +65,7 @@ def logic(row, food_location):
           # if the food is below
           else:
               return(f"insert into engine_orders values( {row[0]}, {row[1]}, {row[0]}, {down(row)}, 'MOVE')")
-  
+            
 
 
   return(f"insert into engine_orders values( {row[0]}, {row[1]}, {left(row)}, {down(row)}, 'MOVE')")
