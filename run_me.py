@@ -6,6 +6,7 @@ import time
 import yaml
 
 import random
+import math
 
 import sqlite3
 
@@ -25,6 +26,8 @@ except:
     pass
 
 con = sqlite3.connect(configs['env']['dbfile'])
+con.create_function('sqrt', 1, math.sqrt)
+con.create_function('pow', 2, math.pow)
 
 GAME_WIDTH = configs['env']['width']
 GAME_HEIGHT = configs['env']['height']
