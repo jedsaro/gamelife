@@ -1,4 +1,3 @@
-from functools import cmp_to_key
 import math # for the euclidean distance
 
 def init():
@@ -24,8 +23,6 @@ def down(row):
 #euclidean distance
 def euclidean_distance(row, food_location):
   return math.sqrt((row[0] - food_location[0])**2 + (row[1] - food_location[1])**2)
-
-
 
 def run(db_cursor, state):
 
