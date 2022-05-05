@@ -22,7 +22,7 @@ def down(row):
 
 #euclidean distance
 def euclidean_distance(row, food_location):
-  return math.sqrt((row[0] - food_location[0])**2 + (row[1] - food_location[1])**2)
+  return math.sqrt(pow(food_location[0] - row[0],2) + pow(food_location[1] - row[1],2))
 
 def run(db_cursor, state):
 
@@ -43,8 +43,12 @@ def run(db_cursor, state):
 
 def logic(row, food_location):
   
+  print(f"taco: {food_location}")
+
   food_location.sort(key=lambda x: euclidean_distance(row, x))
   
+  print(f"food_location: {food_location}")
+
   for looking in food_location:
       # if the food is not in the same row
       if(looking[0] != row[0]):
