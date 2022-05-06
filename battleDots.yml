@@ -1,5 +1,5 @@
 env:
-  width: 100
+  width: 80
   height: 30
   dbfile: ':memory:'
   food_amount: .1
